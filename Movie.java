@@ -13,7 +13,7 @@ public class Movie{
 
 		this.title = title;
 		this.releaseYear = releaseYear;
-		this. duration = duration;
+		this.duration = duration;
 		this.actors = actors;
 
 	}

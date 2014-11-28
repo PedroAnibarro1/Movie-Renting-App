@@ -4,11 +4,14 @@ import java.util.ArrayList;
 public class Customer{
 	
 
-	private Name customerName;
-	private int[] customerId = new int[8];
-	private ArrayList<String> rentedMovies;
+	private Name customerName; //will containt the name of the customer
+	private int[] customerId = new int[8]; //array of integers containing the customer ID
+	private ArrayList<String> rentedMovies; //ArrayList of strings containing the movies rented by the customer
 
 
+	/********************Constructors****************/
+
+	//will be used when a new customer is added
 	public Customer(Name customerName){
 
 		this.customerName = customerName;
@@ -17,6 +20,7 @@ public class Customer{
 
 	}
 
+	//will be used to store a customer from the database
 	public Customer(Name customerName, int[] customerId, ArrayList<String> rentedMovies){
 
 		this.customerName = customerName;
@@ -31,12 +35,15 @@ public class Customer{
 
 	/*****************Get Methods*****************/
 
+	//returns customer name
 	public String getCustomerName(){
 
 		return this.customerName.toString();
 
 	}
 
+
+	//returns customer id
 	public String getCustomerId(){
 
 		String idCopy = "";
@@ -51,6 +58,8 @@ public class Customer{
 
 	}
 
+
+	//returns rented movies by the customer
 	public String getRentedMovies(){
 
 		String rentedMoviesStr = "";
@@ -68,8 +77,10 @@ public class Customer{
 
 
 
+
 	/*****************Set Methods*****************/
 
+	//set the customer name
 	public void setCustomerName(Name customerName){
 
 		this.customerName = new Name(customerName.getFirstName(), customerName.getLastName());
@@ -77,9 +88,10 @@ public class Customer{
 	}
 
 
+	//set the customer id
 	private void setCustomerId(){
 
-		//do{
+		//need to add full functionality here
 
 			for(int x = 0; x < 8; x++){
 
@@ -87,12 +99,13 @@ public class Customer{
 
 			}
 
-		//}while();
-
+		
 
 
 	}
 
+
+	//set rented movies by customer
 	public void setRentedMovies(ArrayList<String> rentedMovies){
 
 		for(int x = 0; x < rentedMovies.size(); x++){
@@ -104,12 +117,13 @@ public class Customer{
 	}
 
 
-	
 	/*****************Other Methods*****************/
+
 
 	//public void addMovie(Movie )
 
 
+	//class to print the object
 	public String toString(){
 
 		String output = "Customer name: " + this.customerName.toString() + 
@@ -118,7 +132,7 @@ public class Customer{
 
 		 for(int x = 0; x < this.rentedMovies.size(); x++){
 
-		 	output += this.rentedMovies.get(x) + "\n\t\t"; //verificar lo de llamar el objeto
+		 	output += this.rentedMovies.get(x) + "\n\t\t";
 
 		 }
 
