@@ -52,6 +52,13 @@ public class Customer{
 
 	}
 
+	//returns customer name
+	public Name getCustomerNameO(){
+
+		return this.customerName;
+
+	}
+
 
 	//returns customer id
 	public String getCustomerId(){
@@ -64,6 +71,7 @@ public class Customer{
 
 		}
 
+
 		return idCopy;
 
 	}
@@ -71,22 +79,6 @@ public class Customer{
 
 	//returns rented movies by the customer
 	public ArrayList<String> getRentedMovies(){
-
-		/*
-
-		String rentedMoviesStr = "";
-
-
-		for(int x = 0; x < this.rentedMovies.size(); x++){
-
-			rentedMoviesStr += (this.rentedMovies.get(x) + "\n"); //llama el ArrayList que estara compuesto de Movie y busca el titulo
-
-		}
-
-		return rentedMoviesStr;
-
-		*/
-
 
 		return rentedMovies;
 
@@ -106,15 +98,18 @@ public class Customer{
 
 
 	//set the customer id
-	private void setCustomerId(){
+	public void setCustomerId(){
+
 
 		//need to add full functionality here
 
-			for(int x = 0; x < 8; x++){
+		for(int x = 0; x < 8; x++){
 
-				this.customerId[x] = (int)(Math.random() * 10);
+			this.customerId[x] = (int)(Math.random() * 10);
 
-			}
+		}
+
+
 
 		
 

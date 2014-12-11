@@ -8,6 +8,7 @@ the database. Movies and customers are stored here.
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.*;
 
 
 
@@ -404,6 +405,56 @@ public class DataManager{
 	}
 
 
+	public void addCustomer(){
+
+		//scanner object for the inputs
+		Scanner input = new Scanner(System.in);
+
+
+		String firstName; //stores the user first name
+		String lastName; //stores the user last name
+
+
+		System.out.println("Enter user first name:");
+		firstName = input.nextLine();
+
+		System.out.println("Enter user last name:");
+		lastName = input.nextLine();
+
+		customers.add(new Customer(new Name(firstName, lastName)));
+
+
+		boolean exists;
+
+
+		do{
+
+			exists = false;
+
+			for(int x = 0; x < (customers.size() - 1); x++){
+
+				if(customers.get((customers.size() - 1)).getCustomerId().contentEquals(customers.get(x).getCustomerId())){
+
+					exists = true;
+					customers.get((customers.size() - 1)).setCustomerId();
+
+
+				}
+
+			}
+
+		}while(exists);
+
+		
+		System.out.println();
+		System.out.println();
+		System.out.println("Customer has been added.");
+		System.out.println();
+		System.out.println();
+
+	}
+
+
 
 	public void sortMovies(){
 
@@ -446,7 +497,7 @@ public class DataManager{
 		ArrayList<String> customerNames = new ArrayList<String>();
 		ArrayList<Customer> tempCustomers = new ArrayList<Customer>();
 
-		for(int x = 0; x < movies.size(); x++){
+		for(int x = 0; x < customers.size(); x++){
 
 
 			customerNames.add(customers.get(x).getCustomerName());
@@ -892,30 +943,24 @@ public class DataManager{
 				if(movieExists){
 
 
-					for(int x = 0; x < customers.get(customerIndex).getRentedMovies().size(); x++){
+					if(movies.get(movieIndex).getAvailableCopies() > 0){
 
-						if(customers.get(customerIndex).getRentedMovies().get(x).toUpperCase().trim().contentEquals(title.toUpperCase().trim())){
+						customers.get(customerIndex).getRentedMovies().add(movies.get(movieIndex).getTitle());
+						movies.get(movieIndex).decreaseAvailableCopies();
 
-
-							customers.get(customerIndex).getRentedMovies().remove(x);
-							movies.get(movieIndex).increaseAvailableCopies();
-
-
-							System.out.println("Movie has been delivered.");
-							System.out.println();
-							System.out.println();
+						System.out.println("Movie has been rented.");
+						System.out.println();
+						System.out.println();
 
 
-							return;
+					}else{
 
-						}
+						System.out.println("No enought copies available.");
+						System.out.println();
+						System.out.println();
+						return;
 
 					}
-
-
-					System.out.println("User don't have that movie rented.");
-					System.out.println();
-					System.out.println();
 
 
 
@@ -950,6 +995,82 @@ public class DataManager{
 
 
 
+	public void save()throws FileNotFoundException{
+
+
+		PrintStream output = new PrintStream(new File("customers.txt"));
+		String titleWith = "";
+		String titleWithout = "";
+
+
+		for(int x = 0; x < customers.size(); x++){
+
+
+			output.print(customers.get(x).getCustomerNameO().getFirstName() + "-" + customers.get(x).getCustomerNameO().getLastName() + "\t");
+			output.print(customers.get(x).getCustomerId() + "\t");
+
+
+			for(int y = 0; y < customers.get(x).getRentedMovies().size(); y++){
+
+
+				titleWithout = customers.get(x).getRentedMovies().get(y);
+				titleWith = "";
+
+				for(int z = 0; z < titleWithout.length(); z++){
+
+					if(titleWithout.charAt(z) != ' '){
+
+						titleWith += titleWithout.charAt(z);
+
+					}else{
+
+						titleWith += "-";
+
+					}
+
+				}
+
+
+				output.print(titleWith + "   ");
+
+			}
+
+			output.println();
+
+		}
+
+		output.close();
+
+
+
+
+		output = new PrintStream(new File("movies.txt"));
+
+
+		for(int x = 0; x < movies.size(); x++){
+
+
+			output.print(movies.get(x).getTitle() + "\t");
+			output.print(movies.get(x).getReleaseYear() + "\t");
+			output.print(movies.get(x).getDuration() + "\t");
+			output.print(movies.get(x).getAvailableCopies() + "\t");
+
+
+			for(int y = 0; y < movies.get(x).getActors().size(); y++){
+
+
+				output.print(movies.get(x).getActors().get(y).getFirstName() + "-" + movies.get(x).getActors().get(y).getLastName() + "   ");
+
+			}
+
+			output.println();
+
+		}
+
+		output.close();
+
+
+	}
 
 
 }

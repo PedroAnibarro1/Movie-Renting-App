@@ -5,13 +5,18 @@ import java.util.ArrayList;
 
 public class DataBaseTest{
 
+
 	public static void main(String[] args)throws FileNotFoundException{
 		Scanner input = new Scanner(System.in);
 		Scanner moviesFile = new Scanner(new File("movies.txt"));
 		Scanner customersFile = new Scanner(new File("customers.txt"));
 
 
+
 		DataManager dataBase = new DataManager(moviesFile, customersFile);
+
+		dataBase.sortMovies();
+		dataBase.sortCustomers();
 
 		int dummy = 0;
 
@@ -30,7 +35,9 @@ public class DataBaseTest{
 									"\n10. Find Movie by year" +
 									"\n11. Find Movie by time period" +
 									"\n12. Find a Customer" + 
-									"\n13. Return Movie");
+									"\n13. Return Movie" + 
+									"\n14. Rent Movie" + 
+									"\n15. Add Customer");
 
 				dummy = input.nextInt();
 
@@ -127,9 +134,19 @@ public class DataBaseTest{
 				case 13:
 					dataBase.returnMovie();
 					break;
+				case 14:
+					dataBase.rentMovie();
+					break;
+				case 15:
+					dataBase.addCustomer();
+					break;
 
 			}
 		}while(dummy != 0);
+
+		
+		
+		dataBase.save();
 
 
 	}
