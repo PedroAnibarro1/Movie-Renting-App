@@ -1,3 +1,9 @@
+/*************************************************
+This class is used to create a new movie object.
+**************************************************/
+
+
+
 import java.util.ArrayList;
 
 public class Movie{
@@ -14,6 +20,7 @@ public class Movie{
 		this.title = title;
 		this.releaseYear = releaseYear;
 		this.duration = duration;
+		this.availableCopies = availableCopies;
 		this.actors = actors;
 
 	}
@@ -112,6 +119,7 @@ public class Movie{
 		String output = "Movie title: " + this.title + 
 				"\nRelease Year: " + this.releaseYear +
 				"\nDuration: " + this.duration + " minutes" + 
+				"\nAvailable Copies: " + this.availableCopies + 
 				"\nActors: ";
 
 		 for(int x = 0; x < this.actors.size(); x++){

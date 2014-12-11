@@ -1,12 +1,22 @@
+/*************************************************
+This class is used to create a new customer object.
+**************************************************/
+
+
+
 import java.util.ArrayList;
 
 
 public class Customer{
 	
 
+	/********************Fields****************/
+
 	private Name customerName; //will containt the name of the customer
 	private int[] customerId = new int[8]; //array of integers containing the customer ID
 	private ArrayList<String> rentedMovies; //ArrayList of strings containing the movies rented by the customer
+
+
 
 
 	/********************Constructors****************/
@@ -60,7 +70,9 @@ public class Customer{
 
 
 	//returns rented movies by the customer
-	public String getRentedMovies(){
+	public ArrayList<String> getRentedMovies(){
+
+		/*
 
 		String rentedMoviesStr = "";
 
@@ -72,6 +84,11 @@ public class Customer{
 		}
 
 		return rentedMoviesStr;
+
+		*/
+
+
+		return rentedMovies;
 
 	}
 
