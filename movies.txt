@@ -1,6 +1,9 @@
 Best-of-Me	2014	160.0	7	James-Marsen   
 Inception	2012	200.0	1	Leonardo-DiCaprio   Vicky-   
 Nemo	2003	120.0	7	Nemo-   
+Nemo	2007	120.0	9	Nemo-   
+Nemo	2003	120.0	7	Nemo-   
+Nemo	2007	120.0	9	Nemo-   
 Shrek	2000	150.0	15	Burro-   Shrek-   Fiona-   
 Shrek-2	2003	140.0	3	Shrek-   Burro-   Fiona-   Sapo-   Bruja-   
 Titanic	1990	178.0	5	Leonardo-DiCaprio   

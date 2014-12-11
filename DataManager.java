@@ -17,8 +17,8 @@ public class DataManager{
 
 	/********************Fields****************/
 	
-	private ArrayList<Movie> movies;;
-	private ArrayList<Customer> customers;
+	private ArrayList<Movie> movies; //will contain all the movies of the database
+	private ArrayList<Customer> customers; //will contain all the customers of the database
 
 
 
@@ -31,26 +31,34 @@ public class DataManager{
 		customers = new ArrayList<Customer>();
 
 
+		/*This part of the constructor will read the movies*/
+
 		{
 
-			String title;
-			int releaseYear;
-			double duration;
-			int availableCopies;
-			ArrayList<Name> actors;
+			String title; //title of movie
+			int releaseYear; //release year of movie
+			double duration; //duration of movie
+			int availableCopies; //available copies of movie
+			ArrayList<Name> actors; //actor list of movie
 
-			while(moviesFile.hasNextLine()){
+
+			//from here it will read and create the database from the file
+
+			while(moviesFile.hasNextLine()){ //while it has a new movie on file
 
 				eachLine = new Scanner(moviesFile.nextLine());
 				actors = new ArrayList<Name>();
 
 				
+				//read all the line knowing the order of what is reading
 
 				title = eachLine.next();
 				releaseYear = eachLine.nextInt();
 				duration = eachLine.nextDouble();
 				availableCopies = eachLine.nextInt();
 
+
+				//this loop will read all the actors
 
 				while(eachLine.hasNext()){
 
@@ -88,7 +96,7 @@ public class DataManager{
 
 
 
-
+				//add movie to database with all the information
 				movies.add(new Movie(title, releaseYear, duration, availableCopies, actors));
 
 
@@ -99,16 +107,18 @@ public class DataManager{
 
 
 
-		/**************************************************/
+		/*This part of the constructor will read the movies*/
 
 		{
 
-			Name customerName;
-			int[] customerId;
-			ArrayList<String> rentedMovies;
-			String firstName = "";
-			String lastName = "";
+			Name customerName; //stores the customer name
+			int[] customerId; //stores the id
+			ArrayList<String> rentedMovies; //stores the rented movies
+			String firstName = ""; //first name of customer
+			String lastName = ""; //last name of customer
 
+
+			//read all the lines of the customer file and stores all values 
 
 			while(customersFile.hasNextLine()){
 
@@ -213,6 +223,7 @@ public class DataManager{
 
 	/*****************Other Methods*****************/
 
+	//print all the database
 	public String toString(){
 
 		String moviesOutput = "Movies:\n\n";
@@ -239,6 +250,7 @@ public class DataManager{
 	}
 
 
+	//print only the movies on database
 	public void printMovies(){
 
 		String moviesOutput = "Movies:\n\n";
@@ -256,6 +268,7 @@ public class DataManager{
 	}
 
 
+	//print only the customers on database
 	public void printCustomers(){
 
 		String customersOutput = "Customers:\n\n";
@@ -274,7 +287,7 @@ public class DataManager{
 	}
 
 
-
+	// add a movie
 	public void addMovie(){
 
 		//scanner object for the inputs
@@ -355,6 +368,7 @@ public class DataManager{
 	}
 
 
+	//remove movie
 	public void removeMovie(){
 
 
@@ -405,6 +419,7 @@ public class DataManager{
 	}
 
 
+	// add a customer
 	public void addCustomer(){
 
 		//scanner object for the inputs
@@ -455,7 +470,69 @@ public class DataManager{
 	}
 
 
+	//remove a customer
+	public void removeCustomer(){
 
+
+		if(!customers.isEmpty()){
+
+			//scanner object for the inputs
+			Scanner input = new Scanner(System.in);
+
+			String user;
+
+			//asks for the title of the movie to be deleted
+			System.out.println("Enter the full name of the user to be deleted:");
+			user = input.nextLine();
+			System.out.println();
+
+
+
+			//moves through the ArrayList of movies searching for the movie
+			for(int x = 0; x < customers.size(); x++){
+
+				//if it exists in the database, delete it
+				if(customers.get(x).getCustomerName().toUpperCase().trim().contentEquals(user.toUpperCase().trim())){
+
+					customers.remove(x);
+
+					System.out.println();
+					System.out.println();
+					System.out.println("User has been deleted.");
+					System.out.println();
+					System.out.println();
+					return;
+					
+
+				}
+
+			}
+
+			//Movie not found
+			System.out.println("User not found.");
+			System.out.println();
+
+		}else{
+
+			//Database is empty
+			System.out.println("There are no users on database.");
+			System.out.println();
+			return;
+
+		}
+
+
+		return;
+
+		
+		
+	}
+
+
+
+
+
+	//sort all the database of movies
 	public void sortMovies(){
 
 		ArrayList<String> movieTitles = new ArrayList<String>();
@@ -492,6 +569,7 @@ public class DataManager{
 
 
 
+	//sort all the customers on the database
 	public void sortCustomers(){
 
 		ArrayList<String> customerNames = new ArrayList<String>();
@@ -994,10 +1072,10 @@ public class DataManager{
 	}
 
 
-
+	//this method is used before closing the program to save all the changes
 	public void save()throws FileNotFoundException{
 
-
+		//creates object to write on file
 		PrintStream output = new PrintStream(new File("customers.txt"));
 		String titleWith = "";
 		String titleWithout = "";

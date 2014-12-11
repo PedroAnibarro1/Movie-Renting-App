@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Customer{
 	
-
+S
 	/********************Fields****************/
 
 	private Name customerName; //will containt the name of the customer

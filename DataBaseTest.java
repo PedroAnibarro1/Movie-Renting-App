@@ -1,3 +1,10 @@
+/********************************************
+*       Author: Pedro Anibarro     			*
+*   Movie Database and Renting Application  *
+*          December 11, 2014        			*
+*********************************************/
+
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -27,17 +34,17 @@ public class DataBaseTest{
 									"\n2. Display movies" +
 									"\n3. Display customers" +
 									"\n4. Add a Movie" +
-									"\n5. Delete a Movie" +
-									"\n6. Sort Movies" +
-									"\n7. Sort Customers" + 
-									"\n8. Find a Movie by title" + 
-									"\n9. Find Movie by actor" +
-									"\n10. Find Movie by year" +
-									"\n11. Find Movie by time period" +
-									"\n12. Find a Customer" + 
-									"\n13. Return Movie" + 
-									"\n14. Rent Movie" + 
-									"\n15. Add Customer");
+									"\n5. Delete a Movie" + 
+									"\n6. Find a Movie by title" + 
+									"\n7. Find Movie by actor" +
+									"\n8. Find Movie by year" +
+									"\n9. Find Movie by time period" +
+									"\n10. Find a Customer" + 
+									"\n11. Return Movie" + 
+									"\n12. Rent Movie" + 
+									"\n13. Add Customer" + 
+									"\n14. Remove Customer" + 
+									"\n0. Exit");
 
 				dummy = input.nextInt();
 
@@ -63,15 +70,9 @@ public class DataBaseTest{
 					dataBase.removeMovie();
 					break;
 				case 6:
-					dataBase.sortMovies();
-					break;
-				case 7:
-					dataBase.sortCustomers();
-					break;
-				case 8:
 					dataBase.findMovie(0);
 					break;
-				case 9:
+				case 7:
 					ArrayList<Movie> moviesOfActor = dataBase.findMovie("");
 
 					System.out.println();
@@ -90,7 +91,7 @@ public class DataBaseTest{
 					}
 
 					break;
-				case 10:
+				case 8:
 					ArrayList<Movie> moviesOfYear = dataBase.findMovie(0.2);
 
 					System.out.println();
@@ -109,7 +110,7 @@ public class DataBaseTest{
 					}
 
 					break;
-				case 11:
+				case 9:
 					ArrayList<Movie> moviesOfPeriod = dataBase.findMovie(false);
 
 					System.out.println();
@@ -128,24 +129,28 @@ public class DataBaseTest{
 					}
 
 					break;
-				case 12:
+				case 10:
 					dataBase.findCustomer();
 					break;
-				case 13:
+				case 11:
 					dataBase.returnMovie();
 					break;
-				case 14:
+				case 12:
 					dataBase.rentMovie();
 					break;
-				case 15:
+				case 13:
 					dataBase.addCustomer();
+					dataBase.sortCustomers();
+					break;
+				case 14:
+					dataBase.removeCustomer();
 					break;
 
 			}
 		}while(dummy != 0);
 
-		
-		
+
+
 		dataBase.save();
 
 

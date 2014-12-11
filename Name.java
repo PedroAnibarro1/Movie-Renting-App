@@ -1,4 +1,7 @@
-import java.util.ArrayList; //no se esta usando por ahora
+/*************************************************
+This class is used to create a new name object.
+**************************************************/
+
 
 
 public class Name{
